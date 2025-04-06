@@ -38,6 +38,57 @@ describe("Testes do Registre.Se", function(){
             expect(validateEmail('tese')).toBe(false)
         });
 
+        it("Deve invalidar o e-mail se faltar o '.'", function(){
+            expect(validateEmail('teste@segunacom'))
+        })
+
+    });
+
+    describe("Teste para a função de validar todos os dados", function(){
+
+
+        it("Deve validar todos os dados corretamente", function(){
+            expect(validateCadastro(
+                'João', // nome
+                'email@test.com', // email
+                '123.456.789-00', // CPF
+                '123456789', // telefone
+                'Rua Teste', // endereço
+                '12345-678', // CEP
+                'Cidade Teste', // cidade
+                'SP', // UF
+                '30', // idade
+                'senha123' // senha
+            )).toBe(true); 
+        });
+
+        it("Deve retornar falso se o email for inválido", function(){
+            expect(validateCadastro(
+                'João', // nome
+                'email-invalido', // email inválido
+                '123.456.789-00', // CPF
+                '123456789', // telefone
+                'Rua Teste', // endereço
+                '12345-678', // CEP
+                'Cidade Teste', // cidade
+                'SP', // UF
+                '30', // idade
+                'senha123' // senha
+            )).toBe(false);
+        });
+
+        it("Deve retornar falso se o CPF for inválido", function(){
+            expect(validateCadastro(
+                'caio', // nome
+                'email@testes.com', // email 
+                '123456789', // CPF inválido
+                '123456789', // Telefone 
+                'Rua Teste', // Endereço
+                'SP', // Estado
+                '25', // idade
+                'senhaabc' // senha
+            )).toBe(false);
+        });
     });
 
 });

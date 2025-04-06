@@ -8,3 +8,10 @@ function validateEmail(email){
     return regex.test(email);
 }
 
+function validateCadastro(nome, email, cpf, phone, address, cep, city, uf, age, password){
+    if (!nome || !email || !cpf || !password || !validateEmail(email) || !validateCPF(cpf) || password.length < 6 || password.length > 8){
+        return false
+    }
+    return true;
+
+};
